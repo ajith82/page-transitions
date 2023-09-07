@@ -6,13 +6,13 @@ import Image from "next/image";
 import Image1 from "../../../public/images/image1.jpg";
 
 import styles from "./ImageGrid.module.scss";
-// import {
-//   setInitialStates,
-//   moveSideImages,
-//   scaleCenterImage,
-//   moveUpTitle,
+import {
+  setInitialStates,
+  moveSideImages,
+  scaleCenterImage,
+  moveUpTitle,
 //   introAnimation,
-// } from "./animations";
+} from "./animations";
 
 const ImageGrid = ({ timeline }) => {
   const centerImageWrapperRef = useRef(null);
@@ -20,6 +20,15 @@ const ImageGrid = ({ timeline }) => {
   const leftImageRef = useRef(null);
   const rightImageRef = useRef(null);
   const centerImageTitleRef = useRef(null);
+
+  useEffect(() => {
+    timeline &&
+      timeline
+        .add(setInitialStates(centerImageRef.current))
+        .add(moveSideImages(leftImageRef.current, rightImageRef.current))
+        .add(scaleCenterImage(centerImageWrapperRef.current, centerImageRef.current))
+        .add(moveUpTitle(centerImageTitleRef.current))
+  }, [timeline]);
 
   return (
     <section className={styles.imageGrid}>

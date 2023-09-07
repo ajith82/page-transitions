@@ -13,7 +13,7 @@ export default function Home() {
   useLayoutEffect(() => {
     const context = gsap.context(() => {
       const tl = gsap.timeline({
-        paused: true,
+        // paused: true,
       });
       setTimeline(tl);
     });
