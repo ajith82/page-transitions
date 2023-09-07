@@ -11,7 +11,7 @@ import {
   moveSideImages,
   scaleCenterImage,
   moveUpTitle,
-//   introAnimation,
+  //   introAnimation,
 } from "./animations";
 
 const ImageGrid = ({ timeline }) => {
@@ -26,8 +26,14 @@ const ImageGrid = ({ timeline }) => {
       timeline
         .add(setInitialStates(centerImageRef.current))
         .add(moveSideImages(leftImageRef.current, rightImageRef.current))
-        .add(scaleCenterImage(centerImageWrapperRef.current, centerImageRef.current))
-        .add(moveUpTitle(centerImageTitleRef.current))
+        .add(
+          scaleCenterImage(
+            centerImageWrapperRef.current,
+            centerImageRef.current
+          ),
+          "<"
+        )
+        .add(moveUpTitle(centerImageTitleRef.current), "<");
   }, [timeline]);
 
   return (
@@ -48,6 +54,7 @@ const ImageGrid = ({ timeline }) => {
           className={styles.imageGrid__imageWrapper}
           data-wrapper-center
           ref={centerImageWrapperRef}
+          onClick={() => timeline.play()}
         >
           <div className={styles.textReveal}>
             <h2

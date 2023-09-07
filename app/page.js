@@ -13,7 +13,8 @@ export default function Home() {
   useLayoutEffect(() => {
     const context = gsap.context(() => {
       const tl = gsap.timeline({
-        // paused: true,
+        paused: true,
+        onComplete: () => router.push("/landing")
       });
       setTimeline(tl);
     });
